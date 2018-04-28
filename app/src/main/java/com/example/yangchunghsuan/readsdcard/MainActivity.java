@@ -22,17 +22,25 @@ public class MainActivity extends AppCompatActivity {
         if (permission!= PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(this,new String[] {READ_EXTERNAL_STORAGE},1);
         }else {
-            File[] file = Environment.getExternalStorageDirectory().listFiles();
-            for (File f:file) {
-                System.out.println(f);
-            }
+//            File[] file = Environment.getExternalStorageDirectory().listFiles();
+//            for (File f:file) {
+//                System.out.println(f);
+//            }
         }
 
         //sd卡真實路徑
         File filePath = new File("/storage/9016-4EF8");
         File[] fileList = filePath.listFiles();
         for (int i =0;i<fileList.length;i++){
-            System.out.println(fileList[i].getName());
+            String name = fileList[i].getName();
+
+            try{
+                if(name.substring(name.length()-3).equals("mp3")){
+                    System.out.println(name);
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+            }
         }
 
     }
